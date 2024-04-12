@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Channel = require('./channelmodel')
 
 const messageSchema=new mongoose.Schema({
    
@@ -6,14 +7,17 @@ const messageSchema=new mongoose.Schema({
         type:String,
         require:true
     },
+    channel:{
+       type:mongoose.Schema.Types.ObjectId,
+       ref:'Channel'
+    },
     timestamp: {
         type: Date,
         default: Date.now
       }
   
 })
-// const channelSchema = new Schema({
-//     collections: [messageSchema]
-//   });
+
 module.exports=mongoose.model('Message',messageSchema)
+
 
